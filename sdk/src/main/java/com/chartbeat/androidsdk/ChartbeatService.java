@@ -21,8 +21,8 @@ public class ChartbeatService extends Service {
     private static final String TAG = ChartbeatService.class.getSimpleName();
     private static final String TRACKER_THREAD = "TRACKER_THREAD";
 
-    private static HandlerThread bgThread;
-    private static ChartbeatServiceHandler handler;
+    private HandlerThread bgThread;
+    private ChartbeatServiceHandler handler;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -57,5 +57,6 @@ public class ChartbeatService extends Service {
     public void onDestroy() {
         handler.removeCallbacksAndMessages(null);
         bgThread.quit();
+        bgThread = null;
     }
 }
